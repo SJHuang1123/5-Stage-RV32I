@@ -27,3 +27,4 @@ module Forwarding(
       : _GEN_2 ? 2'h2 : _GEN_3 ? 2'h0 : {_GEN_0, 1'h0};
   assign io_forward_b = _GEN_7 | _GEN_8 ? 2'h1 : {_GEN_2 | _GEN_3, 1'h0};
 endmodule
+// test
