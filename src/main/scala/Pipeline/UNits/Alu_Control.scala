@@ -13,7 +13,7 @@ class AluControl extends Module {
 
   // R type
   when(io.aluOp === 0.U) {
-    io.out := Cat(0.U(2.W), io.func7, io.func3)
+    io.out := Cat(0.U(1.W), io.func7, io.func3)
 
   // I type
   }.elsewhen(io.aluOp === 1.U) {

@@ -22,6 +22,7 @@ class ID_EX extends Module {
     val ctrl_OpB_in         = Input(Bool())
     val ctrl_nextpc_in      = Input(UInt(2.W))
     val IFID_pc4_in         = Input(UInt(32.W))
+    val pred_in             = Input (Bool())
 
     val rs1_out             = Output(UInt(5.W))
     val rs2_out             = Output(UInt(5.W))
