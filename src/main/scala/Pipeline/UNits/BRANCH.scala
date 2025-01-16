@@ -13,32 +13,39 @@ class Branch extends Module {
     val flush = Output(Bool())
   })
   io.actual := false.B
-
+  io.flush := false.B
+  val temp = WireDefault(false.B)  
   when(io.branch) {
     // beq
     when(io.fnct3 === 0.U) {
       io.actual := io.arg_x === io.arg_y
+      temp := io.arg_x === io.arg_y
     }
     // bne
     .elsewhen(io.fnct3 === 1.U) {
       io.actual := io.arg_x =/= io.arg_y
+      temp := io.arg_x =/= io.arg_y
     }
     // blt
     .elsewhen(io.fnct3 === 4.U) {
       io.actual := io.arg_x < io.arg_y
+      temp := io.arg_x < io.arg_y
     }
     // bge
     .elsewhen(io.fnct3 === 5.U) {
       io.actual := io.arg_x >= io.arg_y
+      temp := io.arg_x >= io.arg_y
     }
     // bltu (unsigned less than)
     .elsewhen(io.fnct3 === 6.U) {
       io.actual := io.arg_x.asUInt < io.arg_y.asUInt
+      temp := io.arg_x < io.arg_y
     }
     // bgeu (unsigned greater than or equal)
     .elsewhen(io.fnct3 === 7.U) {
       io.actual := io.arg_x.asUInt >= io.arg_y.asUInt
+      temp := io.arg_x >= io.arg_y
     }
-    io.flush := io.pred ^ actual
+    io.flush := io.pred ^ temp
   }
 }
